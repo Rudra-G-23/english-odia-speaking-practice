@@ -1,8 +1,9 @@
 import streamlit as st
 from pathlib import Path
 import pandas as pd
-import pyttsx3
 import tempfile
+import base64
+from gtts import gTTS
 
 # ---------------- Page Config ----------------
 st.set_page_config(
@@ -14,11 +15,26 @@ st.set_page_config(
 with st.sidebar:
     category = st.selectbox(
         "📚 Select Category",
-        ["Animal 🐘", "Fruits 🍎"]
+        [
+            "Animal 🐘",
+            "Fruits 🍎",
+            "Colour 🎨",
+            "Body Parts 👀👃👂",
+            "Family 👨‍👩‍👧‍👦",
+            "Noun Word 🫡",
+            "Adjective 📢",
+            "Classroom Objects 📏",
+            "House Objects 🛖",
+            "Prepositions",
+            "Polite Word",
+            "Daily Actions",
+            "Play Actions",
+            "Home Actions",
+            "School Actions",
+            "Small Sentences",
+            "Questions Sentences"
+         ]
     )
-
-    rate = st.slider("Rate:", 100, 250, 150, step=10)
-    volume = st.slider("Volume:", 0.1, 1.0, 0.9, step=0.1)
 
 # ---------------- Load Data ----------------
 BASE_DIR = Path(__file__).parent
@@ -30,9 +46,39 @@ def load_data(file_name):
 
 if category == "Animal 🐘":
     df = load_data("animals.csv")
-else:
+elif category == "fruits.csv":
     df = load_data("fruits.csv")
-
+elif category == "Body Parts 👀👃👂":
+    df = load_data("body-part.csv")
+elif category == "Family 👨‍👩‍👧‍👦":
+    df = load_data("family.csv")
+elif category == "Noun Word 🫡":
+    df = load_data("noun-word.csv")
+elif category == "Colour 🎨":
+    df = load_data("colour.csv")
+elif category == "Classroom Objects 📏":
+    df = load_data("classroom-objects.csv")
+elif category == "House Objects 🛖":
+    df = load_data("house-objects.csv")
+elif category == "Adjective 📢":
+    df = load_data("adjective.csv")
+elif category == "Prepositions":
+    df = load_data("prepositions.csv")
+elif category == "Polite Word":
+    df = load_data("polite-word.csv")
+elif category == "Daily Actions":
+    df = load_data("daily-actions.csv")
+elif category == "Play Actions":
+    df = load_data("play-actions.csv")
+elif category == "School Actions":
+    df = load_data("school-actions.csv")
+elif category == "Home Actions":
+    df = load_data("home-actions.csv")
+elif category == "Small Sentences":
+    df = load_data("small-sentences.csv")
+elif category ==  "Questions Sentences":
+    df = load_data("questions-sentences.csv")
+    
 # ---------------- Helper ----------------
 def get_random(df):
     row = df.sample(1).iloc[0]
@@ -75,33 +121,36 @@ with col_or:
         unsafe_allow_html=True
     )
 
-# ---------------- Speak Logic (SAFE) ----------------
-def speak(text, rate, volume):
-    # create temp wav file
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as fp:
-        audio_path = fp.name
+# ---------------- Speak Logic ----------------
+def speak(text, lang="en"):
+    tts = gTTS(text=text, lang=lang)
 
-    engine = pyttsx3.init(driverName="sapi5")
-    engine.setProperty("rate", rate)
-    engine.setProperty("volume", volume)
-
-    voices = engine.getProperty("voices")
-    engine.setProperty("voice", voices[0].id)
-
-    engine.save_to_file(text, audio_path)
-    engine.runAndWait()
-    engine.stop()
-
-    return audio_path
-
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as fp:
+        tts.save(fp.name)
+        return fp.name
 
 # ---------------- Buttons ----------------
 col1, col2 = st.columns(2)
 
+audio_placeholder = st.empty()
+
 with col1:
     if st.button("Speak 🔊"):
-        audio_file = speak(english, rate, volume)
-        st.audio(audio_file, format="audio/wav")
+        audio_file = speak(english, lang="en")
+
+        with open(audio_file, "rb") as f:
+            audio_bytes = f.read()
+
+        audio_base64 = base64.b64encode(audio_bytes).decode()
+
+        audio_html = f"""
+        <audio autoplay>
+            <source src="data:audio/mp3;base64,{audio_base64}" type="audio/mp3">
+        </audio>
+        """
+
+        audio_placeholder.markdown(audio_html, unsafe_allow_html=True)
+
 
 with col2:
     if st.button("Random 🎲"):

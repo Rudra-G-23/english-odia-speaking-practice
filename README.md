@@ -1,7 +1,14 @@
 # 🧑‍🏫 English–Odia Speaking Practice App
 
-A simple and interactive **Streamlit-based learning app** to help beginners practice **English and Odia words with pronunciation**.  
+A simple and interactive **Streamlit-based learning app** to help 5 to 8 year small children practice **English and Odia words with pronunciation**.  
+
 This project is especially useful for **children and early learners** to improve speaking and vocabulary.
+
+Build for my small little brother. 😉
+
+![pic](/assets/interface.png)
+
+[Live: https://english-odia-speaking-practice-with-rudra.streamlit.app/](https://english-odia-speaking-practice-with-rudra.streamlit.app/)
 
 ---
 
@@ -21,7 +28,7 @@ This project is especially useful for **children and early learners** to improve
 - **Python**
 - **Streamlit** – UI & web app
 - **pandas** – data handling
-- **pyttsx3** – text-to-speech (audio file generation)
+- **gTTS** – text-to-speech (audio file generation)
 - **HTML** – simple styling
 
 ---
@@ -36,6 +43,7 @@ english-odia-speaking-practice/
 ├── data/
 │   ├── animals.csv
 │   └── fruits.csv
+│   └── ..
 └── pyproject.toml
 ```
 
@@ -93,13 +101,31 @@ Elephant,ହାତୀ
 
 ---
 
-## 🚀 Future Improvements
+## 🚀 Category are available
+```python
+"📚 Select Category",
+[
+    "Animal 🐘",
+    "Fruits 🍎",
+    "Colour 🎨",
+    "Body Parts 👀👃👂",
+    "Family 👨‍👩‍👧‍👦",
+    "Noun Word 🫡",
+    "Adjective 📢",
+    "Classroom Objects 📏",
+    "House Objects 🛖",
+    "Prepositions",
+    "Polite Word",
+    "Daily Actions",
+    "Play Actions",
+    "Home Actions",
+    "School Actions",
+    "Small Sentences",
+    "Questions Sentences"
+    ]
+```
 
-* Sentence pronunciation mode
-* Separate voices for English & Odia
-* Auto-play on word change
-* More categories (verbs, objects, body parts)
-* Mobile-friendly UI
+
 
 ---
 

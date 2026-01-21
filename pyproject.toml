@@ -1,14 +1,13 @@
 [project]
 name = "english-odia-spelling-practice"
 version = "0.1.0"
-description = "Add your description here"
+description = "A simple and interactive Streamlit-based learning app to help 5 Year old child to practice English and Odia words with pronunciation."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "gtts>=2.5.4",
     "numpy>=2.4.0",
     "pandas>=2.3.3",
     "pathlib>=1.0.1",
-    "pip>=25.3",
-    "pyttsx3>=2.99",
     "streamlit>=1.52.2",
 ]
