@@ -123,6 +123,8 @@ Elephant,ହାତୀ
     "Small Sentences",
     "Questions Sentences"
     ]
+
+"Alphabetical Verbs Dataset"
 ```
 
 
