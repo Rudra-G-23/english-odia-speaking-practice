@@ -78,6 +78,9 @@ def random_motivation_emojis():
     emoji = random.choice(MOTIVATION_EMOJIS)
     st.toast(icon=emoji, body=".")
 
+if "last_toast" not in st.session_state:
+    st.session_state.last_toast = None
+    
 def show_toast_once(message):
     if st.session_state.last_toast != message:
         st.toast(message, icon="😁")

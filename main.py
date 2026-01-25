@@ -29,10 +29,6 @@ ALPHABETICAL_MAP = {
     chr(i): f"{chr(i).lower()}.csv" for i in range(ord("A"), ord("Z") + 1)
 }
 
-# ---------------- Toast Logic ----------------
-if "last_toast" not in st.session_state:
-    st.session_state.last_toast = None
-
 # ---------------- UI Display ----------------
 tab1, tab2 = st.tabs(["🙈 ଦେଖ (See)", "🙉 ଶୁଣ (Listen)"])
 
