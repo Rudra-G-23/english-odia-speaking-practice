@@ -6,12 +6,9 @@ import tempfile
 import base64
 from gtts import gTTS
 
-
 BASE_DIR = Path(__file__).resolve() .parent.parent
 TEXT_FILE_DIR = BASE_DIR / "data" / "text"
-ONLY_ENGLISH_WORD_FILE_PATH = os.path.join(TEXT_FILE_DIR, "only-english-word.txt")
-
-
+ONLY_ENGLISH_WORD_FILE_PATH = os.path.join(TEXT_FILE_DIR, "one-lakhs-english-words-formatted.txt")
 
 def selected_random_line(path, k):
     """

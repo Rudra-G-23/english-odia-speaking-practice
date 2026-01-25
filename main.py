@@ -1,10 +1,11 @@
 import streamlit as st
 
 from app.see import (
-    load_data,
     get_category_map,
     get_eng_or_card_ui,
-    random_motivation_emojis
+    random_motivation_emojis,
+    choose_df,
+    get_random
 )
 
 from app.quiz import (
@@ -32,12 +33,6 @@ ALPHABETICAL_MAP = {
 if "last_toast" not in st.session_state:
     st.session_state.last_toast = None
 
-def show_toast_once(message):
-    if st.session_state.last_toast != message:
-        st.toast(message, icon="😁")
-        st.session_state.last_toast = message
-
-
 # ---------------- UI Display ----------------
 tab1, tab2 = st.tabs(["🙈 ଦେଖ (See)", "🙉 ଶୁଣ (Listen)"])
 
@@ -59,27 +54,16 @@ with tab1:
 
     # ---------------- Choose df ----------------
     df = None
-
-    if category:
-        df = load_data(CATEGORY_MAP[category], "category")
-        show_toast_once(f"Loaded category: {category}")
-
-    elif alpha_verbs:
-        df = load_data(ALPHABETICAL_MAP[alpha_verbs], "verbs")
-        show_toast_once(f"Loaded verbs starting with: {alpha_verbs}")
-
-    else:
-        st.info("Please select କଣ ଖେଳିବ 👆")
+    
+    df = choose_df(df,
+        category, CATEGORY_MAP,
+        alpha_verbs, ALPHABETICAL_MAP
+        )
 
     with st.expander("😉 ସବୁ ଶବ୍ଦ: All Words"):
         st.dataframe(df)
         
     st.write("---")
-
-    # ---------------- Helper ----------------
-    def get_random(df):
-        row = df.sample(1).iloc[0]
-        return row["english"], row["odia"]
 
     # ---------------- Session State ----------------
     if df is not None:
@@ -87,15 +71,12 @@ with tab1:
             st.session_state.word = get_random(df)
                 
     if df is not None and "word" in st.session_state:
-
         english, odia = st.session_state.word
-
         get_eng_or_card_ui(english, odia)
         
     if df is not None and "word" in st.session_state:
 
         col1, col2 = st.columns(2)
-        audio_placeholder = st.empty()
 
         with col1:
             if st.button("🔊 Speak"):

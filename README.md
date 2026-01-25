@@ -6,7 +6,7 @@ This project is especially useful for **children and early learners** to improve
 
 Build for my small little brother. 😉
 
-![pic](/assets/interface.png)
+![pic](/assets/english-to-odia-speaking-v2.png)
 
 [Live: https://english-odia-speaking-practice-with-rudra.streamlit.app/](https://english-odia-speaking-practice-with-rudra.streamlit.app/)
 
