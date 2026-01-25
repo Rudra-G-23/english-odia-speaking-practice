@@ -77,34 +77,3 @@ def random_motivation_emojis():
     
     emoji = random.choice(MOTIVATION_EMOJIS)
     st.toast(icon=emoji, body=".")
-
-if "last_toast" not in st.session_state:
-    st.session_state.last_toast = None
-    
-def show_toast_once(message):
-    if st.session_state.last_toast != message:
-        st.toast(message, icon="😁")
-        st.session_state.last_toast = message
-
-def choose_df(
-    df,
-    category, CATEGORY_MAP,
-    alpha_verbs, ALPHABETICAL_MAP
-    ):
-    
-    if category:
-        df = load_data(CATEGORY_MAP[category], "category")
-        show_toast_once(f"Loaded category: {category}")
-
-    elif alpha_verbs:
-        df = load_data(ALPHABETICAL_MAP[alpha_verbs], "verbs")
-        show_toast_once(f"Loaded verbs starting with: {alpha_verbs}")
-
-    else:
-        st.info("Please select କଣ ଖେଳିବ 👆")
-
-    return df
-
-def get_random(df):
-    row = df.sample(1).iloc[0]
-    return row["english"], row["odia"]
