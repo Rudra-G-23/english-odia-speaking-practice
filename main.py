@@ -15,7 +15,7 @@ st.header("👩‍🏫 English-Odia Speaking Practice")
 
 # ---------------- Paths ----------------
 BASE_DIR = Path(__file__).parent
-CATEGORY_DIR = BASE_DIR / "data"
+CATEGORY_DIR = BASE_DIR / "data" / "category"
 VERBS_DIR = BASE_DIR / "data" / "alpha-verbs"
 
 # ---------------- Load Data ----------------
@@ -153,7 +153,7 @@ if df is not None and "word" in st.session_state:
     audio_placeholder = st.empty()
 
     with col1:
-        if st.button("Speak 🔊"):
+        if st.button("🔊 Speak"):
             audio_file = speak(english, lang="en")
             with open(audio_file, "rb") as f:
                 audio_bytes = f.read()
@@ -169,7 +169,7 @@ if df is not None and "word" in st.session_state:
             audio_placeholder.markdown(audio_html, unsafe_allow_html=True)
 
     with col2:
-        if st.button("Random 🎲"):
+        if st.button("🎲 Random"):
             st.session_state.word = get_random(df)
             st.rerun()
 

@@ -1,0 +1,11 @@
+App,Goal,Happy,Rudra,Thanks,run,walk,read,write,
+play,eat,drink,sleep,think,learn,teach,speak,listen,
+see,watch,build,break,make,do,go,come,bring,take,give,
+help,try,work,move,stop,start,open,close,call,answer,ask,
+tell,find,lose,win,cut,draw,paint,sing,dance,drive,ride,
+fly,swim,cook,bake,clean,wash,fix,repair,plan,decide,
+choose,change,create,design,develop,grow,plant,harvest,
+collect,send,receive,buy,sell,save,spend,borrow,lend,pay,
+charge,measure,count,compare,check,test,improve,practice,
+train,exercise,rest,relax,smile,laugh,cry,hope,dream,
+believe,remember,forget,forgive
