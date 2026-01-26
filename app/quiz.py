@@ -47,7 +47,7 @@ def clean_list(list_of_words):
     return result_list
 
 def question_generator(list_of_words):
-    three_words = set(random.sample(list_of_words, 3))
+    three_words = set(random.sample(list_of_words, 6))
     question_word = random.choice(list(three_words))
     return question_word, three_words
 
