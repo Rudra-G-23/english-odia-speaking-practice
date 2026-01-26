@@ -47,9 +47,12 @@ def clean_list(list_of_words):
     return result_list
 
 def question_generator(list_of_words):
-    three_words = set(random.sample(list_of_words, 6))
-    question_word = random.choice(list(three_words))
-    return question_word, three_words
+    """
+    Generate random Words and one target word.
+    """
+    options = set(random.sample(list_of_words, 5))
+    target_word = random.choice(list(options))
+    return target_word, options
 
 def get_target_and_options(path, num_line):
     """
